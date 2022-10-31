@@ -2,7 +2,6 @@ package ru.netology.radio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
 public class RadioTest {
 
     @Test
@@ -94,7 +93,7 @@ public class RadioTest {
         Radio radio = new Radio();
 
         radio.setWave(7);
-        radio.nextStation();
+        radio.nextWave();
 
         int expected = 8;
         int actual = (radio.getWave());
@@ -107,7 +106,7 @@ public class RadioTest {
         Radio radio = new Radio();
 
         radio.setWave(8);
-        radio.nextStation();
+        radio.nextWave();
 
         int expected = 9;
         int actual = (radio.getWave());
@@ -120,7 +119,7 @@ public class RadioTest {
         Radio radio = new Radio();
 
         radio.setWave(9);
-        radio.nextStation();
+        radio.nextWave();
 
         int expected = 0;
         int actual = (radio.getWave());
@@ -169,14 +168,119 @@ public class RadioTest {
     }
 
     @Test
+    void toTheHighBorderNumberOfWaveWithParametersTest() {
+        Radio radio = new Radio(100);
+
+        radio.setWave(98);
+        int expected = 98;
+        int actual = radio.getWave();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void theHighBorderNumberOfWaveWithParametersTest() {
+        Radio radio = new Radio(100);
+
+        radio.setWave(99);
+        int expected = 99;
+        int actual = radio.getWave();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void acrossTheHighBorderNumberOfWaveWithParametersTest() {
+        Radio radio = new Radio(100);
+
+        radio.setWave(100);
+        int expected = 0;
+        int actual = radio.getWave();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void toTheBorderNextWaveWithParametersTest() {
+        Radio radio = new Radio(100);
+        radio.setWave(97);
+        radio.nextWave();
+
+        int expected = 98;
+        int actual = radio.getWave();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void theBorderNextWaveWithParametersTest() {
+        Radio radio = new Radio(100);
+        radio.setWave(98);
+        radio.nextWave();
+
+        int expected = 99;
+        int actual = radio.getWave();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void acrossTheBorderNextWaveWithParametersTest() {
+        Radio radio = new Radio(100);
+        radio.setWave(99);
+        radio.nextWave();
+
+        int expected = 0;
+        int actual = radio.getWave();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void toTheBorderPrevWaveWithParametersTest() {
+        Radio radio = new Radio(100);
+        radio.setWave(2);
+        radio.prevWave();
+
+        int expected = 1;
+        int actual = radio.getWave();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void theBorderPrevWaveWithParametersTest() {
+        Radio radio = new Radio(100);
+        radio.setWave(1);
+        radio.prevWave();
+
+        int expected = 0;
+        int actual = radio.getWave();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void acrossTheBorderPrevWaveWithParametersTest() {
+        Radio radio = new Radio(100);
+        radio.setWave(0);
+        radio.prevWave();
+
+        int expected = 99;
+        int actual = radio.getWave();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void trueToTheBorderOfSetHigherVolume() {
         Radio radio = new Radio();
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 99; i++) {
             radio.setHigherVolume();
         }
 
-        int expected = 9;
+        int expected = 99;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -186,11 +290,11 @@ public class RadioTest {
     void trueBorderOfSetHigherVolume() {
         Radio radio = new Radio();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             radio.setHigherVolume();
         }
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -200,11 +304,11 @@ public class RadioTest {
     void falseAcrossBorderOfSetHigherVolume() {
         Radio radio = new Radio();
 
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 101; i++) {
             radio.setHigherVolume();
         }
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -255,4 +359,6 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+
 }
