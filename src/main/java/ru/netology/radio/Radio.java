@@ -9,7 +9,7 @@ public class Radio {
         }
     }
 
-    public void nextStation() {
+    public void nextWave() {
 
         if (currentWave >= 9) {
             currentWave = 0;
