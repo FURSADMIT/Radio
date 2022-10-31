@@ -1,7 +1,7 @@
 package ru.netology.radio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.netology.radio.Radio;
+
 
 public class RadioTest {
 
@@ -156,7 +156,7 @@ public class RadioTest {
     }
 
     @Test
-    void falseAcrossTheBorderOfPrevStationTest() {
+    void falseAcrossTheBorderOfPrevWaveTest() {
         Radio radio = new Radio();
 
         radio.setWave(0);

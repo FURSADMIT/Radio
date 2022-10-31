@@ -13,7 +13,6 @@ public class Radio {
 
         if (currentWave >= 9) {
             currentWave = 0;
-            return;
         } else {
             currentWave++;
         }
@@ -23,7 +22,6 @@ public class Radio {
 
         if (currentWave <= 0) {
             currentWave = 9;
-            return;
         } else {
             currentWave--;
         }
